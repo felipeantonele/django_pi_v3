@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Página de cadastro de escoteiro</title>
+    {% bootstrap_css %}
+</head>
+
+<body>
+    {% block content %}
+    <div class="container">
+
+        <h2>Página de cadastro de escoteiro</h2>
+        {% bootstrap_messages %}
+
+
+        <form action="{% url 'cad_esc' %}" method="post" class="mb-3" class="form" autocomplete="on"
+            enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <!-- <div class="row">
+                <div class="col-sm-5 col-md-6">{% bootstrap_form form %}</div>
+                <div class="col-sm-5 offset-sm-2 col-md-6 offset-md-0">{% buttons %} <div></div>  <button type="submit" class="btn btn-primary">Buscar para seguir</button> {% endbuttons %}</div>  -->
+            <div class="row">
+                <p class="col"> Digite o número do registro para iniciar o cadastro
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-2"> {% bootstrap_form form %}
+                </div>
+                <div class="col-1">{% buttons %} <button type="submit" class="btn btn-primary">Buscar</button>
+                    {% endbuttons %}
+                </div>
+                <div class="row">
+                    <div class="col-1"> {% buttons %}<input type=button class="btn btn-secondary" value="Voltar"
+                            onClick="javascript:history.go(-1);">
+                        {% endbuttons %}
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <br><br>
+    </div>
+    </div>
+    {% bootstrap_javascript jquery='full' %}
+    {% if warning == True %}
+    <br><br>
+    <p>Número de registro não localizado - favor contatar o administrador</p>
+    <br><br>
+    {% endif %}
+
+    {% endblock %}
+</body>
+
+</html>
